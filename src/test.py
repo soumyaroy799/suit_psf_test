@@ -2,7 +2,7 @@ from sunpy.map import Map
 import matplotlib.pyplot as plt 
 from glob import glob
 import os
-from psf_estimate_2 import *
+from psf_estimate_2_gpu import *
 from astropy.io import fits
 from sunkit_instruments.iris import SJI_to_sequence
 from astropy.coordinates import SkyCoord
