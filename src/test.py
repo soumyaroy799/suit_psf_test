@@ -2,7 +2,6 @@ from sunpy.map import Map
 import matplotlib.pyplot as plt 
 from glob import glob
 import os
-from irispy.io import read_files
 from psf_estimate_2 import *
 from astropy.io import fits
 from sunkit_instruments.iris import SJI_to_sequence
