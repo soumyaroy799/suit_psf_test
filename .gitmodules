@@ -1,0 +1,3 @@
+[submodule "external/library"]
+	path = external/library
+	url = https://github.com/soumyaroy799/solar_codes.git

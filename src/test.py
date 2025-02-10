@@ -11,11 +11,13 @@ from tqdm import trange
 from matplotlib import colors
 from scipy.signal import convolve2d
 
-import sys
-sys.path.insert(0,'/Users/soumyaroy/solar_codes')
-from register import sun_register
 
 project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+import sys
+sys.path.insert(0,f'{project_path}/external/library')
+from register import sun_register
 
 suit_files = sorted(glob(f'{project_path}/data/SUIT/*NB03*'))
 iris_files = sorted(glob(f'{project_path}/data/IRIS/*.fits'))
@@ -60,10 +62,10 @@ b = b.submap(blo, top_right=tro)
 # x, y = psf_estimated.shape
 # psf_estimated[x//2, y//2] = 1
 
-im = fits.open(f'{project_path}/data/PSF/NB3/FF_Dark_Normal_fw1_01_fw2_00_os_254_rd_freq_280k_180sec_002/normal_FF_Dark_Normal_fw1_01_fw2_00_os_254_rd_freq_280k_180sec_002_000003.fits')
+im = fits.open(f'{project_path}/data/PSF/NB3/normal_FF_Dark_Normal_fw1_01_fw2_00_os_254_rd_freq_280k_180sec_002_000003.fits')
 im = im[0].data
 
-dark = fits.open(f'{project_path}/data/PSF/NB3/FF_Dark_Normal_fw1_01_fw2_00_os_254_rd_freq_280k_180sec_002/FF_Dark_Normal_fw1_01_fw2_00_os_254_rd_freq_280k_180sec_002/dark_FF_Dark_Normal_fw1_01_fw2_00_os_254_rd_freq_280k_180sec_002_000002.fits')
+dark = fits.open(f'{project_path}/data/PSF/NB3/dark_FF_Dark_Normal_fw1_01_fw2_00_os_254_rd_freq_280k_180sec_002_000002.fits')
 dark = dark[0].data
 
 psf = im-dark; psf = np.array(psf)
