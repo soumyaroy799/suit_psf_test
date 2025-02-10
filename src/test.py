@@ -61,9 +61,11 @@ b = b.submap(blo, top_right=tro)
 # x, y = psf_estimated.shape
 # psf_estimated[x//2, y//2] = 1
 
-im = fits.open('/Users/soumyaroy/Library/CloudStorage/GoogleDrive-soumyaroy799@gmail.com/My Drive/forward_modle_paper_plot/For Raja_09May2023/FF_Dark_Normal_fw1_01_fw2_00_os_254_rd_freq_280k_180sec_002/normal_FF_Dark_Normal_fw1_01_fw2_00_os_254_rd_freq_280k_180sec_002_000003.fits'); im = im[0].data
+im = fits.open(f'{project_path}/data/PSF/NB3/FF_Dark_Normal_fw1_01_fw2_00_os_254_rd_freq_280k_180sec_002/normal_FF_Dark_Normal_fw1_01_fw2_00_os_254_rd_freq_280k_180sec_002_000003.fits')
+im = im[0].data
 
-dark = fits.open('/Users/soumyaroy/Library/CloudStorage/GoogleDrive-soumyaroy799@gmail.com/My Drive/forward_modle_paper_plot/For Raja_09May2023/FF_Dark_Normal_fw1_01_fw2_00_os_254_rd_freq_280k_180sec_002/dark_FF_Dark_Normal_fw1_01_fw2_00_os_254_rd_freq_280k_180sec_002_000002.fits'); dark = dark[0].data
+dark = fits.open(f'{project_path}/data/PSF/NB3/FF_Dark_Normal_fw1_01_fw2_00_os_254_rd_freq_280k_180sec_002/FF_Dark_Normal_fw1_01_fw2_00_os_254_rd_freq_280k_180sec_002/dark_FF_Dark_Normal_fw1_01_fw2_00_os_254_rd_freq_280k_180sec_002_000002.fits')
+dark = dark[0].data
 
 psf = im-dark; psf = np.array(psf)
 x_cen = 1440; y_cen = 1425; half_win = 20
