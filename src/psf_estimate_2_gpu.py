@@ -30,7 +30,7 @@ def compute_loss(estimated, observed):
     """Compute L2 loss between estimated and observed images."""
     return xp.sum((estimated - observed) ** 2)
 
-def refine_psf(true_image, observed_image, psf_guess, learning_rate=0.01, reg=1e-3, momentum=0.9, max_iters=50):
+def refine_psf(true_image, observed_image, psf_guess, learning_rate=0.01, reg=1e-4, momentum=0.1, max_iters=1000):
     """
     Iteratively refine the PSF using an optimized approach with FFT-based convolution.
     Uses CuPy if GPU is available.

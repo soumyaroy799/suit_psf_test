@@ -2,7 +2,7 @@ from sunpy.map import Map
 import matplotlib.pyplot as plt 
 from glob import glob
 import os
-from psf_estimate_2_gpu import *
+from psf_estimate_adam import *
 from astropy.io import fits
 from sunkit_instruments.iris import SJI_to_sequence
 from astropy.coordinates import SkyCoord
@@ -80,7 +80,7 @@ for i,_ in enumerate(psf2):
 
 psf_estimated = np.reshape(psf2,(psf.shape[0],psf.shape[1]))
 psf_estimated = psf_estimated/np.sum(psf_estimated)#; print(psf_estimated.shape)
-plt.imshow(psf_estimated,origin='lower',cmap='jet',norm=colors.LogNorm()); plt.colorbar(); plt.show()
+#plt.imshow(psf_estimated,origin='lower',cmap='jet',norm=colors.LogNorm()); plt.colorbar(); plt.show()
 
 psf_estimated, loss_history = refine_psf(b.data[2:-1,2:-1],c.data, psf_estimated,)
 # psf_estimated = refine_psf(b.data[2:-1,2:-1],c.data, psf_estimated,)
@@ -92,10 +92,10 @@ ax.imshow(b.data, origin='lower')
 ax = fig.add_subplot(222)
 ax.imshow(c.data, origin='lower')
 
-estimated_convolved = convolve2d(b.data[2:-1,2:-1], psf_estimated, mode='same')
+estimated_convolved = convolve2d(b.data[2:-1,2:-1], psf_estimated, mode='valid')
 
 ax = fig.add_subplot(223)
-ax.imshow(psf_estimated, origin='lower')
+ax.imshow(psf_estimated, origin='lower', norm=colors.LogNorm())
 
 ax = fig.add_subplot(224)
 ax.imshow(estimated_convolved, origin='lower')
